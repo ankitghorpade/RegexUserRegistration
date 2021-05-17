@@ -59,17 +59,16 @@ import java.util.regex.Pattern;
 	                System.out.println("mobile number is not valid");
 	        
 	        
-	        //validating password
-	      //at least one UpperCase
+	        //Rule three atleast one numeric number
 	        System.out.println("enter password: ");
 	        String password = sc.next();
-	        pattern = Pattern.compile("^(?=.*[A-Z])(?=.*[\\W])(?=.*[0-9])(?=.*[a-z]).{8,128}$",Pattern.CASE_INSENSITIVE);
+	        pattern = Pattern.compile("^(?=.*[A-Z])(?=.*[\\W])(?=.*[0-9])(?=.*[a-z]).{8,128}$",Pattern.CASE_INSENSITIVE);   
 	        matcher = pattern.matcher(password);
 	        result = matcher.matches();
 	        if(result == true)
-	            System.out.println("Password is valid");
+	            System.out.println("password is valid");
 	        else
-	            System.out.println("Password is invalid");
+	            System.out.println("password is invalid");
 
 	}
 	}
