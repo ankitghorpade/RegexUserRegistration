@@ -60,18 +60,17 @@ import java.util.regex.Pattern;
 	        
 	        
 	        //validating password
-	        //Rule one minimum 8 characters
+	      //at least one UpperCase
 	        System.out.println("enter password: ");
 	        String password = sc.next();
-	        pattern = Pattern.compile("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\\W]).{8,64})",Pattern.CASE_INSENSITIVE);
+	        pattern = Pattern.compile("^(?=.*[A-Z])(?=.*[\\W])(?=.*[0-9])(?=.*[a-z]).{8,128}$",Pattern.CASE_INSENSITIVE);
 	        matcher = pattern.matcher(password);
 	        result = matcher.matches();
 	        if(result == true)
-	            System.out.println("password is valid");
+	            System.out.println("Password is valid");
 	        else
-	            System.out.println("password is invalid");
-	        
-	        
+	            System.out.println("Password is invalid");
+
 	}
 	}
 	
