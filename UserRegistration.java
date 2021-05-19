@@ -1,76 +1,101 @@
-package com;
-import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-	public class UserRegistration<pattern, matcher, result> {
+package Problem;
+import java.util.*;
+import java.util.regex.*;
 
-	    public static void main(String[] args) {
-	        // write your code here
-
-	        System.out.println("Welcome to user registration");
-
-	        Scanner sc = new Scanner(System.in);
-	        System.out.println("enter first name: ");
-	        String firstName = sc.next();
-	        String regex = "^[A-Z]{1}[a-z]{2,}$";
-	        Pattern pattern = Pattern.compile(regex);
-	        Matcher matcher = pattern.matcher(firstName);
-	        boolean result = matcher.matches();
-	        if (result == true)
-	            System.out.println("first name is valid");
-	        else
-	            System.out.println("first name is not valid");
-
-
-	        //validating last name
-	        System.out.println("enter last name: ");
-	        String lastname = sc.next();
-	        matcher = pattern.matcher(lastname);
-	        result = matcher.matches();
-	        if (result == true)
-	            System.out.println("last name is Valid");
-	        else
-	            System.out.println("last name is not valid");
-
-
-	        //validating email
-	        System.out.println("enter email : ");
-	        String email = sc.next();
-	        pattern = Pattern.compile("^([A-Z|a-z|0-9](\\.|_){0,1})+[A-Z|a-z|0-9]\\@([A-Z|a-z|0-9])+((\\.){0,1}[A-Z|a-z|0-9]){2}\\.[a-z]{2,3}$", Pattern.CASE_INSENSITIVE);
-	        matcher = pattern.matcher(email);
-	        result = matcher.matches();
-	        if (result == true)
-	            System.out.println("email is valid");
-	        else
-	            System.out.println("email is not valid");
-
-
-
-	    //validate mobile format
-	        System.out.println("enter mobile number : ");
-	    String mobile = sc.next();
-	    pattern =Pattern.compile("(?!:\\A|\\s)(?!(\\d{1,6}\\s+\\D)|((\\d{1,2}\\s+){2,2}))(((\\+\\d{1,3})|(\\(\\+\\d{1,3}\\)))\\s*)?((\\d{1,6})|(\\(\\d{1,6}\\)))\\/?(([ -.]?)\\d{1,5}){1,5}((\\s*(#|x|(ext))\\.?\\s*)\\d{1,5})?(?!:(\\Z|\\w|\\b\\s))",Pattern.CASE_INSENSITIVE);
-	    matcher =pattern.matcher(mobile);
-	    result =matcher.matches();
-	        if(result ==true)
-	            System.out.println("mobile number is valid");
-	        else
-	                System.out.println("mobile number is not valid");
-	        
-	        
-	        //Rule three atleast one numeric number
-	        System.out.println("enter password: ");
-	        String password = sc.next();
-	        pattern = Pattern.compile("^(?=.*[A-Z])(?=.*[\\W])(?=.*[0-9])(?=.*[a-z]).{8,128}$",Pattern.CASE_INSENSITIVE);   
-	        matcher = pattern.matcher(password);
-	        result = matcher.matches();
-	        if(result == true)
-	            System.out.println("password is valid");
-	        else
-	            System.out.println("password is invalid");
-
+public class UserRegistration<pattern, matcher, result>{
+	Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) {
+	System.out.println("Enter The first Name");
+	String Fname = sc.nextLine();
+	if(Pattern.matches("[A-Z]{1}[a-z]{2,}",Fname))
+	{
+		System.out.println("Name is Valid");
 	}
+	else
+	{
+		System.out.println("Invalid Name. Enter proper Name");
+		
 	}
+	//Validate last name
+	System.out.println("Enter The last Name");
+	String Lname = sc.nextLine();
+	if(Pattern.matches("[A-Z]{1}[a-z]{2,}",Lname))
+	{
+		System.out.println("Name is Valid");
+	}
+	else
+	{
+		System.out.println("Invalid Name.Enter proper Name");
+	}
+	
+	//Validate Email Address
+	System.out.println("Enter The Email");
+	var email = sc.nextLine();
+	if(Pattern.matches("^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$",email))
+	{
+		System.out.println("Email is Valid email");
+	}
+	else
+	{
+		System.out.println("Invalid email.Enter Valid Email");
+	}
+	
+	//Validate Mobile Number
+	System.out.println("Enter the Phone Number");
+	String Number = sc.nextLine();
+
+	if(Pattern.matches("^[0-9]{2}[\\s][0-9]{10}",Number))
+	{
+		System.out.println("Number is Valid Number");
+	}
+	else
+	{
+		System.out.println("Invalid Number.Enter Valid Number");
+	}
+	
+	//Validate Password Rule-1, Rule-2, Rule-3 & Rule-4
+	
+	System.out.println("Enter your Password");
+	String Password = sc.nextLine();
+	if(Pattern.matches("(?=.*[$#@!%^&*])(?=.*[0-9])(?=.*[A-Z]).{8,20}$",Password))
+	{
+		System.out.println("Password is Valid ");
+	}
+	else
+	{
+		System.out.println("Invalid Passsword.Enter Valid Password");
+	}
+	//Checking all Email's Sample Separately
+	ArrayList<String> emails = new ArrayList<String>();
+	//Valid Email's
+	emails.add("abc@yahoo.com");
+	emails.add("abc.100@yahoo.com");
+	emails.add("abc.100@yahoo.com");
+	emails.add("abc111@abc.com");
+	emails.add("abc-100@abc.net");
+	emails.add("abc.100@abc.com.au");
+	emails.add("abc@1.com");
+	emails.add("abc+100@gmail.com");
+	emails.add("abc@yahoo.com.com");
+	
+	//Invalid Email's
+	emails.add("abc@.yahoo.com");
+	emails.add("abc123@%*.com");
+	String regex="^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$";
+	
+	Pattern pattern = Pattern.compile(regex);
+	
+	for(String mail : emails) {
+		Matcher matcher = pattern.matcher(mail);
+	    System.out.println(mail +" : "+ matcher.matches());
+	}
+	
+}	
+}
+
+
+	
+	
 	
 	
